@@ -4,15 +4,31 @@ extends Area2D
 var clik = 0
 # мощ клика по умолчанию 1
 var clikStr = 1
-# цена апгрейда
+# цена апгрейда 10 100 500 1000
 var costUpgrade = 10
+# пассивный доход цена
+var costAutoCoin = 25
+# пассивный доход за тик (1 секунда) 
+var tikCoins = 0
+# Переменная для отслеживания времени
+var timer = 0.0
+
+# инфо о силе клика
 
 
 func _process(delta):
+	# счет
 	$ScoreLable.text = str(clik)
-	
-	
-	
+	# информация лейбл
+	$"../info".text = "		ИНФО:
+сила клика = " + str(clikStr)
+	# пассивный тик дохода
+	timer = timer + delta
+	# Проверяем, прошло ли 1 секунда
+	if timer >= 1.0:
+		clik = clik + tikCoins  # Добавляем tikCoins к clik
+		timer = 0.0  # Сбрасываем таймер
+
 	
 # функция тапанья
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
@@ -24,32 +40,36 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 			clik = clik + clikStr
 			
 
+# пассивный доход
 
+	
 
 
 # функция апгрейда
 func _on_button_button_down() -> void:
 	if clik >= costUpgrade:
 		clik = clik - costUpgrade
+		# изменяем цену апгрейда
+		$"../Button".text = "Улучшение нажатия
+цена: " + str(costUpgrade)
+		costUpgrade = 100
+		# добавляем усиление клика 
+		clikStr = 2
 		
+		
+func _on_button_2_button_down() -> void:
+	if clik >= costAutoCoin:
+		clik = clik - costAutoCoin
+		$"../Button2".text = "Пассивный доход
+цена: " + str(costAutoCoin)
+		costAutoCoin = costAutoCoin + 150
+		tikCoins = 1
+		costAutoCoin = 50
+	
+	
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+# Завершить Выход
+func _on_exit_button_down() -> void:
+	get_tree().quit()  
+	
+	

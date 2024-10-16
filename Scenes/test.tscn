@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://7twkx4lql3f"]
 
-[ext_resource type="Script" path="res://Scenes/click_obj.gd" id="1_aa7h7"]
+[ext_resource type="Script" path="res://Scripts/click_obj.gd" id="1_aa7h7"]
 [ext_resource type="Texture2D" uid="uid://ytd517m5h6vv" path="res://Assets/Obiekt01.png" id="1_ntnlo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u2d8q"]
@@ -74,6 +74,8 @@ offset_bottom = 402.0
 text = "Что добавить, мысли
 
 1. уменьшаем цены, делаем прогрессию с умножением (округление убрать цифры после запятой)
+
+1.1 сделать так чтобы при пассивном доходе сумма бежала вверх а не раз в секунду поднималась!!!!МЕГА ВАЖНО!!!!!
 
 2. Твой счет заменить на рисунок Монетки, может даже анимацию когда пополняется, но с задержкой чтобы было красиво
 

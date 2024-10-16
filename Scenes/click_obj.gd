@@ -5,9 +5,9 @@ var clik = 0
 # мощ клика по умолчанию 1
 var clikStr = 1
 # цена апгрейда 10 100 500 1000
-var costUpgrade = 10
+var costUpgrade = 1
 # пассивный доход цена
-var costAutoCoin = 25
+var costAutoCoin = 2 
 # пассивный доход за тик (1 секунда) 
 var tikCoins = 0
 # Переменная для отслеживания времени
@@ -17,63 +17,60 @@ var timer = 0.0
 
 
 func _process(delta):
-	# счет
-	$ScoreLable.text = str(clik)
-	# информация лейбл
+	# СЧЕТ
+	$ScoreLable.text = str(int(clik))
+	# ИНФОРМаЦИОННЫЙ ЛЕЙБЛ!!!!
 	$"../info".text = "		ИНФО:
-сила клика = " + str(clikStr) + "
-пассивный доход = " + str(tikCoins)
-	# пассивный тик дохода
+сила клика = " + str(int(clikStr)) + "
+пассивный доход = " + str(int(tikCoins))
+	# пассивный тик дохода начинаем отсчет
 	timer = timer + delta
 	# Проверяем, прошло ли 1 секунда
-	if timer >= 1.0:
-		clik = clik + tikCoins  # Добавляем tikCoins к clik
+	if timer >= 0.7:
+		clik = clik + tikCoins  
 		timer = 0.0  # Сбрасываем таймер
 
 
-# кнопки обновление цены
-	$"../ButtonUpClik".text = "Улучшение нажатия\nцена: " + str(costUpgrade)
-	$"../ButtonUpPassiv".text = "Пассивный доход\nцена: " + str(costAutoCoin)
+# кнопки и текст на них обновления цены
+	$"../ButtonUpClik".text = "Улучшение нажатия\nцена: " + str(int(costUpgrade))
+	$"../ButtonUpPassiv".text = "Пассивный доход\nцена: " + str(int(costAutoCoin))
 	
 	
 
 # функция тапанья
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index != MOUSE_BUTTON_WHEEL_UP and event.button_index != MOUSE_BUTTON_WHEEL_DOWN:	
-		print(clik)
-		
-		#$ScoreLable.text = str(clik)
 		for i in range(1):
 			clik = clik + clikStr
 			
 
-# пассивный доход
-
-	
 
 
-# функция апгрейда
+
+# Копка  апгрейда клика
 func _on_button_button_down() -> void:
 	if clik >= costUpgrade:
 		clik = clik - costUpgrade
 		# изменяем цену апгрейда
 
-		costUpgrade = 100
+		costUpgrade = costUpgrade * 1.25
 		# добавляем усиление клика 
-		clikStr = 2
+		clikStr = clikStr * 2
 		
-		
+# кнопка апгрейда пассивного дохода
 func _on_button_2_button_down() -> void:
 	if clik >= costAutoCoin:
 		clik = clik - costAutoCoin
 
-		costAutoCoin = costAutoCoin + 150
-		tikCoins = 1
-		costAutoCoin = 50
+		costAutoCoin = costAutoCoin * 1.45
+		if tikCoins == 0:
+			tikCoins = tikCoins + 1
+		tikCoins = tikCoins * 1.5
+		
 	
 	
 
-# Завершить Выход
+#Выход
 func _on_exit_button_down() -> void:
 	get_tree().quit()  
 	

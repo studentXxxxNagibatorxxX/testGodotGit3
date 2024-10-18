@@ -67,13 +67,12 @@ text = "Выход"
 
 [node name="Chisho sdelal" type="Label" parent="."]
 modulate = Color(0.933331, 0.000316315, 0.843961, 1)
-offset_left = 42.0
-offset_top = 78.0
-offset_right = 275.0
-offset_bottom = 402.0
+offset_left = 1198.0
+offset_top = 98.0
+offset_right = 2210.0
+offset_bottom = 589.0
 text = "Что добавить, мысли
 
-1. уменьшаем цены, делаем прогрессию с умножением (округление убрать цифры после запятой)
 
 1.1 сделать так чтобы при пассивном доходе сумма бежала вверх а не раз в секунду поднималась!!!!МЕГА ВАЖНО!!!!!
 
@@ -92,7 +91,15 @@ text = "Что добавить, мысли
 
 "
 
+[node name="NullScoreButton" type="Button" parent="."]
+offset_left = 25.0
+offset_top = 116.0
+offset_right = 209.0
+offset_bottom = 211.0
+text = "Обнулить Счет"
+
 [connection signal="input_event" from="ClickObj" to="ClickObj" method="_on_input_event"]
 [connection signal="button_down" from="ButtonUpClik" to="ClickObj" method="_on_button_button_down"]
 [connection signal="button_down" from="ButtonUpPassiv" to="ClickObj" method="_on_button_2_button_down"]
 [connection signal="button_down" from="Exit" to="ClickObj" method="_on_exit_button_down"]
+[connection signal="button_down" from="NullScoreButton" to="ClickObj" method="_on_null_score_button_button_down"]

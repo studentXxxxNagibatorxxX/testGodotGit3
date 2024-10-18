@@ -1,6 +1,6 @@
 extends Area2D
 
-# кол во кликов
+# кол во кликов Общае
 var clik = 0
 # мощ клика по умолчанию 1
 var clikStr = 1
@@ -26,8 +26,10 @@ func _process(delta):
 	# пассивный тик дохода начинаем отсчет
 	timer = timer + delta
 	# Проверяем, прошло ли 1 секунда
-	if timer >= 0.7:
-		clik = clik + tikCoins  
+	if timer >= 0.1:
+		var tikCoinsForSec
+		tikCoinsForSec = tikCoins / 10
+		clik = clik + tikCoinsForSec  
 		timer = 0.0  # Сбрасываем таймер
 
 
@@ -74,4 +76,8 @@ func _on_button_2_button_down() -> void:
 func _on_exit_button_down() -> void:
 	get_tree().quit()  
 	
-	
+
+
+
+func _on_null_score_button_button_down() -> void:
+	clik = 0

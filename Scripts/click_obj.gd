@@ -13,6 +13,7 @@ var tikCoins = 0
 # Переменная для отслеживания времени
 var timer = 0.0
 
+
 # инфо о силе клика
 
 
@@ -25,12 +26,14 @@ func _process(delta):
 пассивный доход = " + str(int(tikCoins))
 	# пассивный тик дохода начинаем отсчет
 	timer = timer + delta
+
 	# Проверяем, прошло ли 1 секунда
 	if timer >= 0.1:
 		var tikCoinsForSec
 		tikCoinsForSec = tikCoins / 10
 		clik = clik + tikCoinsForSec  
 		timer = 0.0  # Сбрасываем таймер
+	#Тест сколько капает за секунду на глаз
 
 
 # кнопки и текст на них обновления цены
